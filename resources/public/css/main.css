@@ -3,7 +3,9 @@ body {
   color: #22ffff;
   background-color: #223355 }
 h1 {
-  font-family: 'FertigoProRegular'; }
+  font-size: 3em;
+  font-family: 'FertigoProRegular';
+}
 
 .centered {
   text-align: center;
@@ -52,7 +54,7 @@ h1 {
 .goButton {
   padding: 0.3em 0.5em;
   font-family: 'FertigoProRegular';
-	font-size: 1.6em;
+	font-size: 2em;
 }
 .goButton:hover {
 	background-color:#468ccf;
