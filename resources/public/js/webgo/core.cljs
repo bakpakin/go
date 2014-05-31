@@ -28,6 +28,11 @@
   (when-let [b (:previous-board @(:board ui))]
     (gui/update! ui b)))
 
+(defn ^:export redraw
+  "Redraws the canvas."
+  []
+  (gui/update! ui @(:board ui)))
+
 (defn ^:export init
   "Initiates the simulation."
   [canvas-id scorebar-id]

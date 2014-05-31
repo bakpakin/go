@@ -38,6 +38,12 @@ webgo.core.onundo = (function onundo(){var temp__4092__auto__ = new cljs.core.Ke
 });
 goog.exportSymbol('webgo.core.onundo', webgo.core.onundo);
 /**
+* Redraws the canvas.
+*/
+webgo.core.redraw = (function redraw(){return webgo.gui.update_BANG_.call(null,webgo.core.ui,cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)));
+});
+goog.exportSymbol('webgo.core.redraw', webgo.core.redraw);
+/**
 * Initiates the simulation.
 */
 webgo.core.init = (function init(canvas_id,scorebar_id){var canvas = document.getElementById(canvas_id);var scorebar = document.getElementById(scorebar_id);var g = webgo.gui.make.call(null,canvas,scorebar,webgo.go.empty_board.call(null,9),1000,10);webgo.core.ui = g;

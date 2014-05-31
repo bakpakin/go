@@ -8,15 +8,15 @@
       <link rel="shortcut icon" href="resources/public/images/favicon.ico"></link>
   </head>
 
-  <body>
-      <div class="centered">
+  <body onresize="resize_canvas()">
+      <div id="main" class="centered">
           <h1>Play Go</h1>
           <div id="goScorebar">
           </div>
           <div>
               <canvas id="goCanvas"
-                  width="400"
-                  height="400">
+                      width="0"
+                      height="0">
                   Your browser doesn't support canvas.
               </canvas>
           </div>
@@ -49,6 +49,16 @@
   <script src="resources/public/js/cljs.js"></script>
   <script type="text/javascript">goog.require("webgo.core");</script>
   <script type="text/javascript">webgo.core.init("goCanvas", "goScorebar")</script>
+  <script type="text/javascript">
+      function resize_canvas() {
+                  var c = document.getElementById('goCanvas');
+                  var h = document.getElementById('main').offsetHeight - c.height;
+                  c.width = Math.min(window.innerHeight - h - 50, window.innerWidth);
+                  c.height = c.width;
+                  webgo.core.redraw();
+              }
+      resize_canvas();
+  </script>
   </body>
 
 </html>
