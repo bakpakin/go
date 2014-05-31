@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+      <title>Play Go</title>
+      <link rel="stylesheet" href="css/stylesheet.css"></link>
+      <link rel="stylesheet" href="css/main.css"></link>
+      <link rel="shortcut icon" href="images/favicon.ico"></link>
+  </head>
+
+  <body>
+      <div class="centered">
+          <h1>Play Go</h1>
+          <div id="goScorebar">
+          </div>
+          <div>
+              <canvas id="goCanvas"
+                  width="400"
+                  height="400">
+                  Your browser doesn't support canvas.
+              </canvas>
+          </div>
+          <div id="buttons">
+              <a class="goItem goButton" onclick="webgo.core.onpass()">Pass</a>
+              <a class="goItem goButton"
+                 onclick = "if (document.getElementById('newgame').style.display=='block')
+                            document.getElementById('newgame').style.display='none';
+                            else
+                            document.getElementById('newgame').style.display='block';">New Game</a>
+              <a class="goItem goButton" onclick="webgo.core.onundo()">Undo</a>
+          </div>
+          <div id="newgame"
+               class="centered hidden">
+              <a class="goItem goButton" onclick="webgo.core.onnew(5);
+                                                  document.getElementById('newgame').style.display='none';">5x5</a>
+              <a class="goItem goButton" onclick="webgo.core.onnew(9);
+                                                  document.getElementById('newgame').style.display='none';">9x9</a>
+              <a class="goItem goButton" onclick="webgo.core.onnew(13);
+                                                  document.getElementById('newgame').style.display='none';">13x13</a>
+              <a class="goItem goButton" onclick="webgo.core.onnew(19);
+                                                  document.getElementById('newgame').style.display='none';">19x19</a>
+          </div>
+          <div>
+              <br>
+              <address>Made by Calvin Rose 5/30/2014</address>
+          </div>
+      </div>
+  <script src="js/goog/base.js"></script>
+  <script src="js/cljs.js"></script>
+  <script type="text/javascript">goog.require("webgo.core");</script>
+  <script type="text/javascript">webgo.core.init("goCanvas", "goScorebar")</script>
+  </body>
+
+</html>

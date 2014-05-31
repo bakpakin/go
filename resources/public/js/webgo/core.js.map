@@ -1,0 +1,14 @@
+{"version":3,
+ "file":"/Users/Calvin/lt/webgo/resources/public/js/webgo/core.js",
+ "sources":["core.cljs"],
+ "lineCount":49,
+ "mappings":
+ ";AAAA;;;;;;AAIA,AAAA,AAEA;;;sBAAA,wBAAA,9CAAeA,yCAEZC,KACD,YAAA,AAAAC,0KAAA,lLAAMC,kCAAO,AAAA,qFAAQC,oBACfC,IAAE,AAACC,wBAAQH,MAAMF,KACrB,oBAAMI;CAAN,AACE,OAACE,iCAAYH,cAAGC;;CADlB;;;;AAGJ;;;oBAAA,mBAAA,vCAAeG,uCAGb,OAACD,iCAAYH,cAAG,wBAAA,AAAAF,+HAAA,vJAACI,kDAAS,AAAA,qFAAQF;;;AAEpC;;;mBAAA,sBAAA,zCAAeK,mCAEZC,MACD,OAACH,iCAAYH,cAAG,AAACO,+BAAeD;;;AAElC;;;oBAAA,mBAAA,vCAAeE,uCAGb,IAAAC,4PAAA,AAAA,oBAAAA,3PAAa,AAAA,uGAAA,AAAAX,0BAAkB,AAAA,qFAAQE;CAAvC,AAAA,QAAAS,mBAAA,vBAAWC,uBACT,OAACP,iCAAYH,cAAGU;;CADlB;;;;AAGF;;;kBAAA,sCAAA,xDAAeC,iCAEZC,UAAUC,aACX,gMAAA,5LAAMC,SAAO,AAAiBC,wBAAYH,eACpCI,WAAS,AAAiBD,wBAAYF,iBACtCI,IAAE,2EAAA,KAAA,hFAACC,yBAASJ,OAAOE,SAAS,+BAAA,/BAACT,2CACjC,AAAKP,gBAAGiB;AACR,AAACE,iCAAiBnB,cAAGJ;AACrB,OAACwB,2BAAWH",
+ "names":
+ ["webgo.core/on-click", "pos", "cljs.core/deref", "board",
+  "webgo.core/ui", "n", "webgo.go/move", "webgo.gui/update!",
+  "webgo.core/onpass", "webgo.core/onnew", "size",
+  "webgo.go/empty-board", "webgo.core/onundo", "temp__4092__auto__",
+  "b", "webgo.core/init", "canvas-id", "scorebar-id", "canvas",
+  "js/document", "scorebar", "g", "webgo.gui/make",
+  "webgo.gui/add-on-click", "webgo.gui/render"]}
