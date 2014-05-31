@@ -95,9 +95,10 @@
   any dead chains. Capture of the opponent takes precedence over self-capture."
   [board]
   (let [stones (:stones board)
+        t (:turn board)
         l (:last-move board)
-        nbs (vec (neighbors board l))]
-    (reduce remove-if-surrounded board (conj nbs l))))
+        nbs (vec (filter #(= t (stones %)) (neighbors board l)))]
+    (remove-if-surrounded (reduce remove-if-surrounded board nbs) l)))
 
 (defn move
   "Places a stone at the specified position for the current player.
