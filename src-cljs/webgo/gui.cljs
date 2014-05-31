@@ -77,7 +77,8 @@
     (set! (.-strokeStyle ctx) "#009999")
     (draw-grid ctx (:size board) cell-size x-offset y-offset)
     (set! (.-shadowBlur ctx) 5)
-    (draw-stones ctx (:stones board) (:last-move board) cell-size x-offset y-offset)))
+    (draw-stones ctx (:stones board) (:last-move board) cell-size x-offset y-offset))
+  (.requestAnimationFrame js/window (fn [] nil)))
 
 (defn- gui-xform
   "Gets the transformation of the gui on the canavas as [x-offset y-offset square-size]."
