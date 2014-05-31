@@ -4,29 +4,43 @@
 
 (declare ui)
 
+(def enabled (atom true))
+
+(defn setEnabled
+  "Enables the ui. New game is always enabled."
+  [enable]
+  (reset! enabled enable))
+
 (defn ^:export on-click
   "What happens when the user clicks the screen."
   [pos]
-  (let [board @(:board ui)
-        n (go/move board pos)]
-    (when n
-      (gui/update! ui n))))
+  (when @enabled
+    (let [board @(:board ui)
+          n (go/move board pos)]
+      (when n
+        (gui/update! ui n)))))
 
 (defn ^:export onpass
   "What happens when the Pass button is clicked."
   []
-  (gui/update! ui (go/move @(:board ui) nil)))
+  (when @enabled
+    (if (not (:passed? @(:board ui)))
+      (gui/update! ui (go/move @(:board ui) nil))
+      (do
+        (setEnabled false)
+        (gui/show-score! ui)))))
 
 (defn ^:export onnew
   "What happens when the New Game button is pressed."
   [size]
+  (setEnabled true)
   (gui/update! ui (go/empty-board size)))
 
 (defn ^:export onundo
   "What happens when the Undo button is pressed."
   []
-  (when-let [b (:previous-board @(:board ui))]
-    (gui/update! ui b)))
+  (when @enabled (when-let [b (:previous-board @(:board ui))]
+    (gui/update! ui b))))
 
 (defn ^:export redraw
   "Redraws the canvas."

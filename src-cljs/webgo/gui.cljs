@@ -140,6 +140,20 @@
      (screen->board' pos s x y))))
 
 
+(defn show-score!
+  "Call this when the game ends to show score."
+  [gui]
+  (let [scorebar (:scorebar gui)
+        board @(:board gui)
+        t (:turn board)
+        m (:move board)
+        [b w] (go/score board)
+        winner (cond (> b w) "Black won. " (< b w) "White won. " :default "It's a tie. ")]
+    (set! (.-innerHTML scorebar)
+          (str
+           winner
+           "The final score was "
+           b " to " w "."))))
 
 (defn add-on-click
   "Adds a click-listener func to listen for mouse clicks. If the mouse

@@ -160,6 +160,6 @@
         (when (not (contains? (:stones @b) [x y]))
             (reset! b (fill @b [x y] (get-ownership @b [x y])))))
       (let [f (frequencies (vals (:stones @b)))
-            w (if (f :white) (f :white) 0)
-            b (if (f :black) (f :black) 0)]
+            w (if (:white f) (:white f) 0)
+            b (if (:black f) (:black f) 0)]
         [b w])))
