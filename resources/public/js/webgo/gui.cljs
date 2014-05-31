@@ -162,6 +162,7 @@
      (:canvas gui)
      "touchstart"
      (fn [e]
+       (.preventDefault e)
        (let [c (:canvas gui)
              pos (screen->board gui
                                 [(- (.-pageX (aget (.-touches e) 0)) (.-offsetLeft c))
