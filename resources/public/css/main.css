@@ -18,22 +18,19 @@ h1 {
 }
 
 .goItem {
-	-moz-box-shadow:inset 0px 0px 0px 0px #bee2f9;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #bee2f9;
-	box-shadow:inset 0px 0px 0px 0px #bee2f9;
 	background-color:#436899;
-	-webkit-border-top-left-radius:9px;
-	-moz-border-radius-topleft:9px;
-	border-top-left-radius:9px;
-	-webkit-border-top-right-radius:9px;
-	-moz-border-radius-topright:9px;
-	border-top-right-radius:9px;
-	-webkit-border-bottom-right-radius:9px;
-	-moz-border-radius-bottomright:9px;
-	border-bottom-right-radius:9px;
-	-webkit-border-bottom-left-radius:9px;
-	-moz-border-radius-bottomleft:9px;
-	border-bottom-left-radius:9px;
+	-webkit-border-top-left-radius:0.3em;
+	-moz-border-radius-topleft:0.3em;
+	border-top-left-radius:0.3em;
+	-webkit-border-top-right-radius:0.3em;
+	-moz-border-radius-topright:0.3em;
+	border-top-right-radius:0.3em;
+	-webkit-border-bottom-right-radius:0.3em;
+	-moz-border-radius-bottomright:0.3em;
+	border-bottom-right-radius:0.3em;
+	-webkit-border-bottom-left-radius:0.3em;
+	-moz-border-radius-bottomleft:0.3em;
+	border-bottom-left-radius:0.3em;
 	text-indent:0;
 	display:inline-block;
 	color:#2ff;
@@ -49,17 +46,16 @@ h1 {
   width: 50%;
   height: 50%;
   z-index:1002;
-  overflow: auto;
 	background-color:#335889;
 }
 
 .goButton {
   padding: 0.3em 0.5em;
   font-family: 'FertigoProRegular';
-	font-size:26px;
+	font-size: 1.6em;
 }
 .goButton:hover {
 	background-color:#468ccf;
 }.goButton:active {
-	top:1px;
+	top:0.5em;
 }

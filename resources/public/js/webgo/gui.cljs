@@ -156,17 +156,16 @@
          (when
            (go/pos-valid? pos @(:board gui))
            (func pos))))
-     true)
+     false)
     (.addEventListener
      (:canvas gui)
      "touchstart"
-     (fn g [e]
-       (.preventDefault e)
+     (fn [e]
        (let [c (:canvas gui)
-             pos [(- (.-pageX (first (.-targetTouches e))) (.-offsetLeft c))
-                  (- (.-pageY (first (.-targetTouches e))) (.-offsetTop c))]
-             p (screen->board gui pos)]
+             pos (screen->board gui
+                                [(- (.-pageX (aget (.-touches e) 0)) (.-offsetLeft c))
+                                 (- (.-pageY (aget (.-touches e) 0)) (.-offsetTop c))])]
          (when
-           (go/pos-valid? p @(:board gui))
-           (func p))))
-     true))
+           (go/pos-valid? pos @(:board gui))
+           (func pos))))
+     false))
