@@ -1,16 +1,18 @@
 {"version":3,
  "file":"/Users/Calvin/lt/webgo/resources/public/js/webgo/core.js",
  "sources":["core.cljs"],
- "lineCount":79,
+ "lineCount":104,
  "mappings":
- "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",
+ "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",
  "names":
- ["webgo.core/enabled", "cljs.core/atom", "webgo.core/setEnabled",
-  "enable", "cljs.core/reset!", "webgo.core/on-click", "pos",
+ ["webgo.core/enabled", "cljs.core/atom", "webgo.core/new-enabled",
+  "webgo.core/setNewEnabled", "enable", "cljs.core/reset!",
+  "webgo.core/setEnabled", "webgo.core/on-click", "pos",
   "cljs.core/deref", "board", "webgo.core/ui", "n", "webgo.go/move",
-  "webgo.gui/update!", "webgo.core/onpass", "cljs.core/not",
-  "webgo.gui/show-score!", "webgo.core/onnew", "size",
-  "webgo.go/empty-board", "webgo.core/onundo", "temp__4092__auto__",
-  "b", "webgo.core/redraw", "webgo.core/init", "canvas-id",
-  "scorebar-id", "canvas", "js/document", "scorebar", "g",
-  "webgo.gui/make", "webgo.gui/add-on-click", "webgo.gui/render"]}
+  "webgo.gui/update!", "cljs.core/not", "webgo.go/game-over?",
+  "webgo.ai/next-board", "webgo.core/onpass", "webgo.gui/show-score!",
+  "webgo.core/onnew", "size", "webgo.go/empty-board",
+  "webgo.core/onundo", "temp__4092__auto__", "b", "b1",
+  "webgo.core/redraw", "webgo.core/init", "canvas-id", "scorebar-id",
+  "canvas", "js/document", "scorebar", "g", "webgo.gui/make",
+  "webgo.gui/add-on-click", "webgo.gui/render"]}

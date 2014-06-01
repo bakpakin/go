@@ -151,6 +151,14 @@
            (interleave (chain board pos)
                        (repeat color)))))
 
+(defn game-over?
+  "Checks if the board represents a finiahed game."
+  [board]
+  (and
+   (:passed? board)
+   (:previous-board board)
+   (:passed? (:previous-board board))))
+
 (defn score
   "Scores a board. The returned score is in the form [black white]."
   [board]

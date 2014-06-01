@@ -1,22 +1,42 @@
 // Compiled by ClojureScript 0.0-2173
 goog.provide('webgo.core');
 goog.require('cljs.core');
+goog.require('webgo.ai');
+goog.require('webgo.ai');
 goog.require('webgo.gui');
 goog.require('webgo.gui');
 goog.require('webgo.go');
 goog.require('webgo.go');
 webgo.core.enabled = cljs.core.atom.call(null,true);
+webgo.core.new_enabled = cljs.core.atom.call(null,true);
+/**
+* Enables the New Game button.
+*/
+webgo.core.setNewEnabled = (function setNewEnabled(enable){return cljs.core.reset_BANG_.call(null,webgo.core.new_enabled,enable);
+});
+goog.exportSymbol('webgo.core.setNewEnabled', webgo.core.setNewEnabled);
 /**
 * Enables the ui. New game is always enabled.
 */
 webgo.core.setEnabled = (function setEnabled(enable){return cljs.core.reset_BANG_.call(null,webgo.core.enabled,enable);
 });
+goog.exportSymbol('webgo.core.setEnabled', webgo.core.setEnabled);
 /**
 * What happens when the user clicks the screen.
 */
 webgo.core.on_click = (function on_click(pos){if(cljs.core.truth_(cljs.core.deref.call(null,webgo.core.enabled)))
 {var board = cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui));var n = webgo.go.move.call(null,board,pos);if(cljs.core.truth_(n))
-{return webgo.gui.update_BANG_.call(null,webgo.core.ui,n);
+{webgo.core.setEnabled.call(null,false);
+webgo.core.setNewEnabled.call(null,false);
+webgo.gui.update_BANG_.call(null,webgo.core.ui,n);
+if(cljs.core.not.call(null,webgo.go.game_over_QMARK_.call(null,n)))
+{webgo.gui.update_BANG_.call(null,webgo.core.ui,webgo.go.move.call(null,n,webgo.ai.next_board.call(null,n)));
+webgo.core.setEnabled.call(null,true);
+return webgo.core.setNewEnabled.call(null,true);
+} else
+{webgo.core.setEnabled.call(null,true);
+return webgo.core.setNewEnabled.call(null,true);
+}
 } else
 {return null;
 }
@@ -28,13 +48,10 @@ goog.exportSymbol('webgo.core.on_click', webgo.core.on_click);
 /**
 * What happens when the Pass button is clicked.
 */
-webgo.core.onpass = (function onpass(){if(cljs.core.truth_(cljs.core.deref.call(null,webgo.core.enabled)))
-{if(cljs.core.not.call(null,new cljs.core.Keyword(null,"passed?","passed?",4516827457).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)))))
-{return webgo.gui.update_BANG_.call(null,webgo.core.ui,webgo.go.move.call(null,cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)),null));
-} else
+webgo.core.onpass = (function onpass(){webgo.core.on_click.call(null,null);
+if(cljs.core.truth_(webgo.go.game_over_QMARK_.call(null,cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)))))
 {webgo.core.setEnabled.call(null,false);
 return webgo.gui.show_score_BANG_.call(null,webgo.core.ui);
-}
 } else
 {return null;
 }
@@ -43,8 +60,12 @@ goog.exportSymbol('webgo.core.onpass', webgo.core.onpass);
 /**
 * What happens when the New Game button is pressed.
 */
-webgo.core.onnew = (function onnew(size){webgo.core.setEnabled.call(null,true);
+webgo.core.onnew = (function onnew(size){if(cljs.core.truth_(cljs.core.deref.call(null,webgo.core.new_enabled)))
+{webgo.core.setEnabled.call(null,true);
 return webgo.gui.update_BANG_.call(null,webgo.core.ui,webgo.go.empty_board.call(null,size));
+} else
+{return null;
+}
 });
 goog.exportSymbol('webgo.core.onnew', webgo.core.onnew);
 /**
@@ -52,7 +73,11 @@ goog.exportSymbol('webgo.core.onnew', webgo.core.onnew);
 */
 webgo.core.onundo = (function onundo(){if(cljs.core.truth_(cljs.core.deref.call(null,webgo.core.enabled)))
 {var temp__4092__auto__ = new cljs.core.Keyword(null,"previous-board","previous-board",4191509506).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)));if(cljs.core.truth_(temp__4092__auto__))
-{var b = temp__4092__auto__;return webgo.gui.update_BANG_.call(null,webgo.core.ui,b);
+{var b = temp__4092__auto__;var temp__4092__auto____$1 = new cljs.core.Keyword(null,"previous-board","previous-board",4191509506).cljs$core$IFn$_invoke$arity$1(b);if(cljs.core.truth_(temp__4092__auto____$1))
+{var b1 = temp__4092__auto____$1;return webgo.gui.update_BANG_.call(null,webgo.core.ui,b1);
+} else
+{return null;
+}
 } else
 {return null;
 }
