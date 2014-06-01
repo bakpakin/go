@@ -21,7 +21,7 @@
 (defn ^:export on-click
   "What happens when the user clicks the screen."
   [pos]
-  (when @enabled
+  (when (and @enabled (not (go/game-over? @(:board ui))))
     (let [board @(:board ui)
           n (go/move board pos)]
       (when n
@@ -55,7 +55,7 @@
 (defn ^:export onundo
   "What happens when the Undo button is pressed."
   []
-  (when @enabled
+  (when (and @enabled (not (go/game-over? @(:board ui))))
     (when-let [b (:previous-board @(:board ui))]
       (when-let [b1 (:previous-board b)]
         (gui/update! ui b1)))))
