@@ -31,6 +31,24 @@
                  "document.getElementById('newgame').style.display='none';
                                 webgo.core.setEnabled(true);">Cancel</a>
           </div>
+          <div id="mode" class="hidden goMenu">
+              <a id="modeText">One Player - Pick a mode</a>
+              <br>
+              <a class="goItem goButton" onclick="webgo.core.setOnePlayer(true);
+                                                  webgo.core.setEnabled(true);
+                                                  document.getElementById('mode').style.display='none';
+                                                  document.getElementById('modeText').innerHTML='One Player - Pick a mode';
+                                                  ">One Player</a>
+              <br>
+              <a class="goItem goButton" onclick="webgo.core.setOnePlayer(false);
+                                                  webgo.core.setEnabled(true);
+                                                  document.getElementById('mode').style.display='none';
+                                                  document.getElementById('modeText').innerHTML='Two Player - Pick a mode';">Two Player</a>
+              <br>
+               <a class="goItem goButton" onclick=
+                 "document.getElementById('mode').style.display='none';
+                                webgo.core.setEnabled(true);">Cancel</a>
+          </div>
           <canvas id="goCanvas"
                       width="0"
                       height="0">
@@ -46,8 +64,16 @@
                             } else {
                                 document.getElementById('newgame').style.display='block';
                                 webgo.core.setEnabled(false);
-                            }">New Game</a>
+                            }">New</a>
               <a class="goItem goButton" onclick="webgo.core.onundo()">Undo</a>
+              <a class="goItem goButton"
+                 onclick="if (document.getElementById('mode').style.display=='block') {
+                                document.getElementById('mode').style.display='none';
+                                webgo.core.setEnabled(true);
+                            } else {
+                                document.getElementById('mode').style.display='block';
+                                webgo.core.setEnabled(false);
+                            }">Mode</a>
           </div>
           <div>
               <br>

@@ -5,6 +5,7 @@
 
 (declare ui)
 
+(def mode (atom :one))
 (def enabled (atom true))
 (def new-enabled (atom true))
 
@@ -18,6 +19,16 @@
   [enable]
   (reset! enabled enable))
 
+(defn ^:export setOnePlayer
+  "Sets the game mode - one player is true, two player is false."
+  [one-player]
+  (reset! mode (case one-player true :one false :two)))
+
+(defn ^:export getOnePlayer
+  "Returns true if in one-player mode, otherwise false."
+  []
+  (= :one @mode))
+
 (defn ^:export on-click
   "What happens when the user clicks the screen."
   [pos]
@@ -28,9 +39,10 @@
         (setEnabled false)
         (setNewEnabled false)
         (gui/update! ui n)
-        (if (not (go/game-over? n))
+        (if (and (= :one @mode) (not (go/game-over? n)))
           (do
-            (gui/update! ui (go/move n (ai/next-board n)))
+            (let [n1 (go/move n (ai/next-board n))]
+              (gui/update! ui n1))
             (setEnabled true)
             (setNewEnabled true))
           (do
@@ -57,8 +69,10 @@
   []
   (when (and @enabled (not (go/game-over? @(:board ui))))
     (when-let [b (:previous-board @(:board ui))]
-      (when-let [b1 (:previous-board b)]
-        (gui/update! ui b1)))))
+      (if (= @mode :one)
+        (when-let [b1 (:previous-board b)]
+          (gui/update! ui b1))
+        (gui/update! ui b)))))
 
 (defn ^:export redraw
   "Redraws the canvas."

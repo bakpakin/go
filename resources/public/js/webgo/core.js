@@ -7,6 +7,7 @@ goog.require('webgo.gui');
 goog.require('webgo.gui');
 goog.require('webgo.go');
 goog.require('webgo.go');
+webgo.core.mode = cljs.core.atom.call(null,new cljs.core.Keyword(null,"one","one",1014014424));
 webgo.core.enabled = cljs.core.atom.call(null,true);
 webgo.core.new_enabled = cljs.core.atom.call(null,true);
 /**
@@ -22,6 +23,31 @@ webgo.core.setEnabled = (function setEnabled(enable){return cljs.core.reset_BANG
 });
 goog.exportSymbol('webgo.core.setEnabled', webgo.core.setEnabled);
 /**
+* Sets the game mode - one player is true, two player is false.
+*/
+webgo.core.setOnePlayer = (function setOnePlayer(one_player){return cljs.core.reset_BANG_.call(null,webgo.core.mode,(function (){var G__42900 = one_player;if(cljs.core._EQ_.call(null,false,G__42900))
+{return new cljs.core.Keyword(null,"two","two",1014019518);
+} else
+{if(cljs.core._EQ_.call(null,true,G__42900))
+{return new cljs.core.Keyword(null,"one","one",1014014424);
+} else
+{if(new cljs.core.Keyword(null,"else","else",1017020587))
+{throw (new Error([cljs.core.str("No matching clause: "),cljs.core.str(one_player)].join('')));
+} else
+{return null;
+}
+}
+}
+})());
+});
+goog.exportSymbol('webgo.core.setOnePlayer', webgo.core.setOnePlayer);
+/**
+* Returns true if in one-player mode, otherwise false.
+*/
+webgo.core.getOnePlayer = (function getOnePlayer(){return cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"one","one",1014014424),cljs.core.deref.call(null,webgo.core.mode));
+});
+goog.exportSymbol('webgo.core.getOnePlayer', webgo.core.getOnePlayer);
+/**
 * What happens when the user clicks the screen.
 */
 webgo.core.on_click = (function on_click(pos){if(cljs.core.truth_((function (){var and__3431__auto__ = cljs.core.deref.call(null,webgo.core.enabled);if(cljs.core.truth_(and__3431__auto__))
@@ -34,8 +60,8 @@ webgo.core.on_click = (function on_click(pos){if(cljs.core.truth_((function (){v
 {webgo.core.setEnabled.call(null,false);
 webgo.core.setNewEnabled.call(null,false);
 webgo.gui.update_BANG_.call(null,webgo.core.ui,n);
-if(cljs.core.not.call(null,webgo.go.game_over_QMARK_.call(null,n)))
-{webgo.gui.update_BANG_.call(null,webgo.core.ui,webgo.go.move.call(null,n,webgo.ai.next_board.call(null,n)));
+if((cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"one","one",1014014424),cljs.core.deref.call(null,webgo.core.mode))) && (cljs.core.not.call(null,webgo.go.game_over_QMARK_.call(null,n))))
+{var n1_42901 = webgo.go.move.call(null,n,webgo.ai.next_board.call(null,n));webgo.gui.update_BANG_.call(null,webgo.core.ui,n1_42901);
 webgo.core.setEnabled.call(null,true);
 return webgo.core.setNewEnabled.call(null,true);
 } else
@@ -83,10 +109,14 @@ webgo.core.onundo = (function onundo(){if(cljs.core.truth_((function (){var and_
 }
 })()))
 {var temp__4092__auto__ = new cljs.core.Keyword(null,"previous-board","previous-board",4191509506).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,new cljs.core.Keyword(null,"board","board",1107812952).cljs$core$IFn$_invoke$arity$1(webgo.core.ui)));if(cljs.core.truth_(temp__4092__auto__))
-{var b = temp__4092__auto__;var temp__4092__auto____$1 = new cljs.core.Keyword(null,"previous-board","previous-board",4191509506).cljs$core$IFn$_invoke$arity$1(b);if(cljs.core.truth_(temp__4092__auto____$1))
+{var b = temp__4092__auto__;if(cljs.core._EQ_.call(null,cljs.core.deref.call(null,webgo.core.mode),new cljs.core.Keyword(null,"one","one",1014014424)))
+{var temp__4092__auto____$1 = new cljs.core.Keyword(null,"previous-board","previous-board",4191509506).cljs$core$IFn$_invoke$arity$1(b);if(cljs.core.truth_(temp__4092__auto____$1))
 {var b1 = temp__4092__auto____$1;return webgo.gui.update_BANG_.call(null,webgo.core.ui,b1);
 } else
 {return null;
+}
+} else
+{return webgo.gui.update_BANG_.call(null,webgo.core.ui,b);
 }
 } else
 {return null;
