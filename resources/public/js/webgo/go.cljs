@@ -123,11 +123,13 @@
            (not= (:stones (:previous-board board)) (:stones n))
 
            ;;check for previous board
-           (not (contains? old-stones (:stones n))))
+           (if old-stones
+             (not (contains? old-stones (:stones n)))
+             true))
           n)))
    (move-phase-1 board nil)))
   ([board pos]
-   (move board pos #{})))
+   (move board pos nil)))
 
 (defn get-ownership
   "Returns the player who owns the position, or nil if neutral territory."

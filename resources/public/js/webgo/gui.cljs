@@ -3,11 +3,10 @@
 
 (defn make
   "Makes a new gui."
-  [canvas scorebar board optimum-square-size border]
+  [canvas scorebar board border]
   {:canvas canvas
    :scorebar scorebar
    :board (atom board)
-   :square-size optimum-square-size
    :border border})
 
 (defn- screen->board'
@@ -89,7 +88,7 @@
         w (.-width canvas)
         h (.-height canvas)
         bsize (:size board)
-        ssize (max 1 (min (:square-size gui) (/ (- (min w h) (* 2 border)) bsize)))
+        ssize (/ (- (min w h) (* 2 border)) bsize)
         x (/ (- w (* bsize ssize)) 2)
         y (/ (- h (* bsize ssize)) 2)]
     [x y ssize]))

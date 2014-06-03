@@ -84,7 +84,7 @@
   [canvas-id scorebar-id]
   (let [canvas (.getElementById js/document canvas-id)
         scorebar (.getElementById js/document scorebar-id)
-        g (gui/make canvas scorebar (go/empty-board 9) 1000 10)]
+        g (gui/make canvas scorebar (go/empty-board 9) 10)]
     (def ui g)
     (gui/add-on-click ui on-click)
     (gui/render g)))
